@@ -41,7 +41,7 @@
 #include <moveit/task_constructor/cost_terms.h>
 #include <moveit/task_constructor/fmt_p.h>
 
-#include <moveit/planning_scene/planning_scene.hpp>
+#include <moveit/planning_scene/planning_scene.h>
 
 namespace moveit {
 namespace task_constructor {
@@ -156,7 +156,6 @@ std::pair<InterfaceState, SubTrajectory> ModifyPlanningScene::apply(const Interf
 		if (res.collision) {
 			const auto contact = res.contacts.begin()->second.front();
 			traj.markAsFailure(contact.body_name_1 + " colliding with " + contact.body_name_2);
-			utils::addCollisionMarkers(traj.markers(), scene->getPlanningFrame(), res.contacts);
 		}
 	} catch (const std::exception& e) {
 		traj.markAsFailure(e.what());

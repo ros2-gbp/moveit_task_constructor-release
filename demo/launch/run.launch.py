@@ -10,7 +10,6 @@ from moveit_configs_utils import MoveItConfigsBuilder
 def generate_launch_description():
     moveit_config = (
         MoveItConfigsBuilder("moveit_resources_panda")
-        .planning_pipelines(pipelines=["ompl"])
         .robot_description(file_path="config/panda.urdf.xacro")
         .to_moveit_configs()
     )
@@ -22,7 +21,11 @@ def generate_launch_description():
         executable=LaunchConfiguration("exe"),
         output="screen",
         parameters=[
-            moveit_config.to_dict(),
+            moveit_config.robot_description,
+            moveit_config.robot_description_semantic,
+            moveit_config.robot_description_kinematics,
+            moveit_config.joint_limits,
+            moveit_config.planning_pipelines,
             os.path.join(package_shared_path, "config", "panda_config.yaml"),
         ],
     )

@@ -19,14 +19,15 @@ find_package(std_msgs REQUIRED)
 add_library(${PROJECT_NAME} SHARED
    src/execute_task_solution_capability.cpp
 )
-target_link_libraries(${PROJECT_NAME} PUBLIC
-  fmt
-  ${rclcpp_action_TARGETS}
-  ${moveit_core_TARGETS}
-  ${moveit_ros_move_group_TARGETS}
-  ${moveit_ros_planning_TARGETS}
-  ${moveit_task_constructor_core_TARGETS}
-  ${moveit_task_constructor_msgs_TARGETS}
+ament_target_dependencies(${PROJECT_NAME}
+                          Boost
+                          fmt
+                          rclcpp_action
+                          moveit_core
+                          moveit_ros_move_group
+                          moveit_ros_planning
+                          moveit_task_constructor_core
+                          moveit_task_constructor_msgs
 )
 
 install(TARGETS ${PROJECT_NAME}

@@ -37,15 +37,16 @@ add_library(${PROJECT_NAME} SHARED
 	solvers/pipeline_planner.cpp
 	solvers/multi_planner.cpp
 )
-target_link_libraries(${PROJECT_NAME}
+ament_target_dependencies(${PROJECT_NAME}
 	fmt
-	${moveit_core_TARGETS}
-	${moveit_ros_planning_TARGETS}
-	${moveit_ros_planning_interface_TARGETS}
-	${rviz_marker_tools_TARGETS}
-	${geometry_msgs_TARGETS}
-	${moveit_task_constructor_msgs_TARGETS}
-	${visualization_msgs_TARGETS}
+	moveit_core
+	geometry_msgs
+	moveit_ros_planning
+	moveit_ros_planning_interface
+	moveit_task_constructor_msgs
+	rclcpp
+	rviz_marker_tools
+	visualization_msgs
 )
 target_include_directories(${PROJECT_NAME}
 	PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>

@@ -4,11 +4,10 @@
 #include <moveit/task_constructor/stages/move_relative.h>
 #include <moveit/task_constructor/stages/fixed_state.h>
 #include <moveit/task_constructor/solvers/cartesian_path.h>
-#include <moveit/task_constructor/solvers/joint_interpolation.h>
 #include <moveit/task_constructor/solvers/pipeline_planner.h>
 
-#include <moveit/planning_scene/planning_scene.hpp>
-#include <moveit/robot_trajectory/robot_trajectory.hpp>
+#include <moveit/planning_scene/planning_scene.h>
+#include <moveit/robot_trajectory/robot_trajectory.h>
 
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <geometry_msgs/msg/twist_stamped.hpp>
@@ -33,13 +32,9 @@ solvers::CartesianPathPtr create<solvers::CartesianPath>(const rclcpp::Node::Sha
 	return std::make_shared<solvers::CartesianPath>();
 }
 template <>
-solvers::JointInterpolationPlannerPtr
-create<solvers::JointInterpolationPlanner>(const rclcpp::Node::SharedPtr& /*unused*/) {
-	return std::make_shared<solvers::JointInterpolationPlanner>();
-}
-template <>
 solvers::PipelinePlannerPtr create<solvers::PipelinePlanner>(const rclcpp::Node::SharedPtr& node) {
-	auto p = std::make_shared<solvers::PipelinePlanner>(node, "pilz_industrial_motion_planner", "LIN");
+	auto p = std::make_shared<solvers::PipelinePlanner>(node, "pilz_industrial_motion_planner");
+	p->setPlannerId("LIN");
 	p->setProperty("max_velocity_scaling_factor", 0.1);
 	p->setProperty("max_acceleration_scaling_factor", 0.1);
 	return p;
@@ -73,7 +68,6 @@ struct PandaMoveRelative : public testing::Test
 	}
 };
 using PandaMoveRelativeCartesian = PandaMoveRelative<solvers::CartesianPath>;
-using PandaMoveRelativeJoint = PandaMoveRelative<solvers::JointInterpolationPlanner>;
 
 moveit_msgs::msg::CollisionObject createObject(const std::string& id, const geometry_msgs::msg::Pose& pose) {
 	moveit_msgs::msg::CollisionObject co;
@@ -167,25 +161,6 @@ TEST_F(PandaMoveRelativeCartesian, cartesianRotateAttachedIKFrame) {
 
 	ASSERT_TRUE(t.plan()) << "Failed to plan";
 	EXPECT_CONST_POSITION(move->solutions().front(), attached_object);
-}
-
-// https://github.com/moveit/moveit_task_constructor/issues/664
-TEST_F(PandaMoveRelativeJoint, jointOutsideBound) {
-	// move joint inside limit
-	auto initial_jpos = scene->getCurrentState().getJointPositions("panda_joint7");
-	move->setDirection([initial_jpos] {
-		return std::map<std::string, double>{ { "panda_joint7", 2.0 - *initial_jpos } };
-	}());
-	EXPECT_TRUE(this->t.plan()) << "Plan should succeed, joint inside limit";
-
-	this->t.reset();
-
-	// move joint outside limit: 2.8973
-	move->setDirection([initial_jpos] {
-		return std::map<std::string, double>{ { "panda_joint7", 3.0 - *initial_jpos } };
-	}());
-
-	EXPECT_FALSE(this->t.plan()) << "Plan should fail, joint outside limit";
 }
 
 using PlannerTypes = ::testing::Types<solvers::CartesianPath, solvers::PipelinePlanner>;

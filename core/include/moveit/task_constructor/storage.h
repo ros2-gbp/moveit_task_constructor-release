@@ -39,7 +39,7 @@
 
 #pragma once
 
-#include <moveit/macros/class_forward.hpp>
+#include <moveit/macros/class_forward.h>
 #include <moveit/task_constructor/properties.h>
 #include <moveit/task_constructor/cost_queue.h>
 #include <moveit_task_constructor_msgs/msg/solution.hpp>
@@ -341,7 +341,7 @@ private:
 	// name of the planner used to create this solution
 	std::string planner_id_;
 	// markers for this solution, e.g. target frame or collision indicators
-	std::vector<visualization_msgs::msg::Marker> markers_;
+	std::deque<visualization_msgs::msg::Marker> markers_;
 
 	// begin and end InterfaceState of this solution/trajectory
 	const InterfaceState* start_ = nullptr;

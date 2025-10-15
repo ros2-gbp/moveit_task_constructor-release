@@ -40,11 +40,15 @@
 #include <moveit/task_constructor/storage.h>
 #include <moveit/task_constructor/fmt_p.h>
 
-#include <moveit/planning_scene/planning_scene.hpp>
+#include <moveit/planning_scene/planning_scene.h>
 #include <moveit/task_constructor/cost_terms.h>
 
 #include <rviz_marker_tools/marker_creation.h>
+#if __has_include(<tf2_eigen/tf2_eigen.hpp>)
 #include <tf2_eigen/tf2_eigen.hpp>
+#else
+#include <tf2_eigen/tf2_eigen.h>
+#endif
 #include <Eigen/Geometry>
 #include <rclcpp/logging.hpp>
 

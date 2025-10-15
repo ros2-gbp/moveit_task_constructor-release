@@ -59,7 +59,7 @@ class class_ : public pybind11::classh<type_, options...>  // NOLINT(readability
 
 public:
 	// forward all constructors
-	using base_class_::base_class_;
+	using base_class_::classh;
 
 	template <typename PropertyType, typename... Extra>
 	class_& property(const char* name, const Extra&... extra) {

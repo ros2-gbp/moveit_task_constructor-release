@@ -71,15 +71,21 @@ class TestPropertyMap(unittest.TestCase):
 
         props["planner"] = "planner"
         self.assertEqual(props["planner"], "planner")
+        self.assertEqual(planner.planner, "planner")
 
         props["double"] = 3.14
         a = props
         props["double"] = 2.71
         self.assertEqual(a["double"], 2.71)
 
+        planner.planner = "other"
+        self.assertEqual(props["planner"], "other")
+        self.assertEqual(planner.planner, "other")
+
         del planner
         # We can still access props, because actual destruction of planner is delayed
         self.assertEqual(props["goal_joint_tolerance"], 2.71)
+        self.assertEqual(props["planner"], "other")
 
     def test_iter(self):
         # assign values so we can iterate over them
@@ -254,8 +260,6 @@ class TestStages(unittest.TestCase):
         self._check(stage, "eef_frame", "eef_frame")
         self._check(stage, "eef_group", "eef_group")
         self._check(stage, "eef_parent_group", "eef_parent_group")
-        # This will only work for pybind11 v3
-        # self._check(stage.cartesian_solver, "max_velocity_scaling_factor", 0.1)
 
     def test_Place(self):
         generator_stage = stages.GeneratePose("generator")
