@@ -1,0 +1,55 @@
+ros-jazzy-moveit-task-constructor-capabilities (0.1.4-1bookworm) bookworm; urgency=high
+
+  * Replace deprecated ament_target_dependencies()
+  * Migrate to new arguments for static_transform_publisher
+  * Add missing include fmt/ranges.h (#712 <https://github.com/moveit/moveit_task_constructor/issues/712>)
+  * Reset preempt_request after canceling execution (#689 <https://github.com/moveit/moveit_task_constructor/issues/689>)
+  * Let Task::preempt() cancel execute() (#684 <https://github.com/moveit/moveit_task_constructor/issues/684>)
+  * Add missing include fmt/ranges.h (#712 <https://github.com/moveit/moveit_task_constructor/issues/712>)
+  * Provide action feedback during task execution (#653 <https://github.com/moveit/moveit_task_constructor/issues/653>)
+  * Use .hpp headers (#641 <https://github.com/moveit/moveit_task_constructor/issues/641>)
+  * Silent error "Found empty JointState message"
+  * Simplify formatting code with https://github.com/fmtlib (#499 <https://github.com/moveit/moveit_task_constructor/issues/499>)
+  * Print warning if no controllers are configured for trajectory execution (#514 <https://github.com/moveit/moveit_task_constructor/issues/514>)
+  * Fix Solution::fillMessage() (#432 <https://github.com/moveit/moveit_task_constructor/issues/432>)
+  * Add property trajectory_execution_info (#355 <https://github.com/moveit/moveit_task_constructor/issues/355>, #502 <https://github.com/moveit/moveit_task_constructor/issues/502>)
+  * ExecuteTaskSolutionCapability: Reject new goals when busy (#496 <https://github.com/moveit/moveit_task_constructor/issues/496>)
+  * ExecuteTaskSolutionCapability: Rename goalCallback() -> execCallback()
+  * Replace namespace robot_[model|state] with moveit::core
+  * Use pluginlib consistently (#463 <https://github.com/moveit/moveit_task_constructor/issues/463>)
+  * remove underscore from public members in MotionPlanResponse (#426 <https://github.com/moveit/moveit_task_constructor/issues/426>)
+  * Rely on CXXFLAGS definition from moveit_common package
+  * Fix compiler warnings
+  * Alphabetize package.xml's and CMakeLists
+  * execute_task_solution_capability: check for canceling request before canceling the goal handle (#321 <https://github.com/moveit/moveit_task_constructor/issues/321>)
+  * ROS 2 Migration (#170 <https://github.com/moveit/moveit_task_constructor/issues/170>)
+  * Contributors: AndyZe, Cihat Kurtuluş Altıparmak, Dhruv Patel, Henning Kayser, Jafar Abdi, JafarAbdi, Marq Rasmussen, Michael Görner, Peter David Fagan, Robert Haschke, Sebastian Jahr
+
+ -- Michael v4hn Goerner <me@v4hn.de>  Tue, 14 Oct 2025 22:00:00 -0000
+
+ros-jazzy-moveit-task-constructor-capabilities (0.1.3-1bookworm) bookworm; urgency=high
+
+
+
+ -- Michael v4hn Goerner <me@v4hn.de>  Sun, 05 Mar 2023 23:00:00 -0000
+
+ros-jazzy-moveit-task-constructor-capabilities (0.1.2-1bookworm) bookworm; urgency=high
+
+
+
+ -- Michael v4hn Goerner <me@v4hn.de>  Thu, 23 Feb 2023 23:00:00 -0000
+
+ros-jazzy-moveit-task-constructor-capabilities (0.1.1-1bookworm) bookworm; urgency=high
+
+
+
+ -- Michael v4hn Goerner <me@v4hn.de>  Tue, 14 Feb 2023 23:00:00 -0000
+
+ros-jazzy-moveit-task-constructor-capabilities (0.1.0-1bookworm) bookworm; urgency=high
+
+  * Initial release
+  * Contributors: Michael Görner, Robert Haschke
+
+ -- Michael v4hn Goerner <me@v4hn.de>  Wed, 01 Feb 2023 23:00:00 -0000
+
+
