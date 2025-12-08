@@ -1,0 +1,12 @@
+Source: ros-kilted-moveit-task-constructor-capabilities
+Section: misc
+Priority: optional
+Maintainer: Michael v4hn Goerner <me@v4hn.de>
+Build-Depends: debhelper (>= 9.0.0), libfmt-dev, ros-kilted-ament-cmake, ros-kilted-ament-cmake-gtest <!nocheck>, ros-kilted-launch-testing <!nocheck>, ros-kilted-launch-testing-ament-cmake <!nocheck>, ros-kilted-moveit-configs-utils <!nocheck>, ros-kilted-moveit-core, ros-kilted-moveit-resources-panda-moveit-config <!nocheck>, ros-kilted-moveit-ros-move-group, ros-kilted-moveit-ros-planning, ros-kilted-moveit-task-constructor-core, ros-kilted-moveit-task-constructor-msgs, ros-kilted-pluginlib, ros-kilted-rclcpp-action, ros-kilted-std-msgs, ros-kilted-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-moveit-task-constructor-capabilities
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libfmt-dev, ros-kilted-moveit-core, ros-kilted-moveit-ros-move-group, ros-kilted-moveit-ros-planning, ros-kilted-moveit-task-constructor-core, ros-kilted-moveit-task-constructor-msgs, ros-kilted-pluginlib, ros-kilted-rclcpp-action, ros-kilted-std-msgs, ros-kilted-ros-workspace
+Description: MoveGroupCapabilites to interact with MoveIt
