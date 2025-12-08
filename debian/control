@@ -1,0 +1,12 @@
+Source: ros-rolling-moveit-task-constructor-demo
+Section: misc
+Priority: optional
+Maintainer: Robert Haschke <rhaschke@techfak.uni-bielefeld.de>
+Build-Depends: debhelper (>= 9.0.0), ros-rolling-ament-cmake, ros-rolling-generate-parameter-library, ros-rolling-moveit-core, ros-rolling-moveit-ros-planning-interface, ros-rolling-moveit-task-constructor-core, ros-rolling-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-moveit-task-constructor-demo
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-rolling-generate-parameter-library, ros-rolling-moveit-configs-utils, ros-rolling-moveit-core, ros-rolling-moveit-resources-panda-moveit-config, ros-rolling-moveit-ros-planning-interface, ros-rolling-moveit-task-constructor-capabilities, ros-rolling-moveit-task-constructor-core, ros-rolling-moveit-task-constructor-visualization, ros-rolling-py-binding-tools, ros-rolling-ros-workspace
+Description: demo tasks illustrating various capabilities of MTC.
