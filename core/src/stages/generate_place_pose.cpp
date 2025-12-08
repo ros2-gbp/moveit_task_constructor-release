@@ -40,16 +40,12 @@
 
 #include <rviz_marker_tools/marker_creation.h>
 
-#include <moveit/planning_scene/planning_scene.h>
-#include <moveit/robot_state/robot_state.h>
-#include <moveit/robot_state/attached_body.h>
+#include <moveit/planning_scene/planning_scene.hpp>
+#include <moveit/robot_state/robot_state.hpp>
+#include <moveit/robot_state/attached_body.hpp>
 
 #include <Eigen/Geometry>
-#if __has_include(<tf2_eigen/tf2_eigen.hpp>)
 #include <tf2_eigen/tf2_eigen.hpp>
-#else
-#include <tf2_eigen/tf2_eigen.h>
-#endif
 
 namespace moveit {
 namespace task_constructor {

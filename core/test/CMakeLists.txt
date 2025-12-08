@@ -44,11 +44,13 @@ if (BUILD_TESTING)
 
 	mtc_add_gmock(test_mockups.cpp)
 	mtc_add_gtest(test_stage.cpp)
+	mtc_add_gtest(test_limit_solutions.cpp)
 	mtc_add_gtest(test_container.cpp)
 	mtc_add_gmock(test_serial.cpp)
 	mtc_add_gmock(test_pruning.cpp)
 	mtc_add_gtest(test_properties.cpp)
 	mtc_add_gtest(test_cost_terms.cpp)
+	mtc_add_gtest(test_storage.cpp)
 
 	mtc_add_gmock(test_fallback.cpp)
 	mtc_add_gmock(test_cost_queue.cpp)
@@ -56,6 +58,7 @@ if (BUILD_TESTING)
 
 	mtc_add_gtest(test_move_to.cpp test.launch.py)
 	mtc_add_gtest(test_move_relative.cpp test.launch.py)
+	mtc_add_gtest(test_pipeline_planner.cpp)
 
 	# building these integration tests works without moveit config packages
 	ament_add_gtest_executable(pick_ur5 pick_ur5.cpp)

@@ -8,10 +8,8 @@ import time
 rclcpp.init()
 node = rclcpp.Node("mtc_tutorial")
 
-ompl_planner = core.PipelinePlanner(node, "ompl")
-ompl_planner.planner = "RRTConnectkConfigDefault"
-pilz_planner = core.PipelinePlanner(node, "pilz_industrial_motion_planner")
-pilz_planner.planner = "PTP"
+ompl_planner = core.PipelinePlanner(node, "ompl", "RRTConnectkConfigDefault")
+pilz_planner = core.PipelinePlanner(node, "pilz_industrial_motion_planner", "PTP")
 multiPlanner = core.MultiPlanner()
 multiPlanner.add(pilz_planner, ompl_planner)
 

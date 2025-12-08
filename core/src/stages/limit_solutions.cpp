@@ -1,8 +1,6 @@
 /*********************************************************************
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2017, Bielefeld University
- *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -32,35 +30,49 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  *********************************************************************/
 
-/* Authors: Elham Iravani, Robert Haschke
-   Desc:    Fix collisions in input scene
-*/
+/* Authors: Joseph Moore */
 
-#pragma once
-
+#include <moveit/task_constructor/stages/limit_solutions.h>
 #include <moveit/task_constructor/storage.h>
-#include <moveit/task_constructor/stage.h>
-#include <geometry_msgs/msg/vector3.hpp>
-#include <moveit/collision_detection/collision_common.hpp>
+#include <moveit/task_constructor/cost_terms.h>
+#include <fmt/format.h>
 
 namespace moveit {
 namespace task_constructor {
 namespace stages {
 
-class FixCollisionObjects : public PropagatingEitherWay
-{
-public:
-	FixCollisionObjects(const std::string& name = "fix collisions of objects");
+LimitSolutions::LimitSolutions(const std::string& name, Stage::pointer&& child) : WrapperBase(name, std::move(child)) {
+	auto& p = properties();
+	p.declare<uint32_t>("max_solutions", "maximum number of solutions returned by this wrapper");
+	forwarded_solutions = 0;
+}
 
-	void computeForward(const InterfaceState& from) override;
-	void computeBackward(const InterfaceState& to) override;
+void LimitSolutions::reset() {
+	upstream_solutions_.clear();
+	forwarded_solutions = 0;
+	WrapperBase::reset();
+}
 
-	void setDirection(const geometry_msgs::msg::Vector3& dir) { setProperty("direction", dir); }
-	void setMaxPenetration(double penetration) { setProperty("max_penetration", penetration); }
+void LimitSolutions::onNewSolution(const SolutionBase& s) {
+	uint32_t max_solutions = properties().get<uint32_t>("max_solutions");
+	if (forwarded_solutions + upstream_solutions_.size() < max_solutions)
+		upstream_solutions_.push(&s);
+}
 
-private:
-	SubTrajectory fixCollisions(planning_scene::PlanningScene& scene) const;
-};
+bool LimitSolutions::canCompute() const {
+	return !upstream_solutions_.empty() || WrapperBase::canCompute();
+}
+
+void LimitSolutions::compute() {
+	if (WrapperBase::canCompute())
+		WrapperBase::compute();
+
+	if (upstream_solutions_.empty())
+		return;
+
+	++forwarded_solutions;
+	liftSolution(*upstream_solutions_.pop());
+}
 }  // namespace stages
 }  // namespace task_constructor
 }  // namespace moveit

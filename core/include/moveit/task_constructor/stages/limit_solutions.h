@@ -1,8 +1,6 @@
 /*********************************************************************
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2017, Bielefeld University
- *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -14,7 +12,7 @@
  *     copyright notice, this list of conditions and the following
  *     disclaimer in the documentation and/or other materials provided
  *     with the distribution.
- *   * Neither the name of Bielefeld University nor the names of its
+ *   * Neither the name of the copyright holders nor the names of its
  *     contributors may be used to endorse or promote products derived
  *     from this software without specific prior written permission.
  *
@@ -31,35 +29,36 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  *********************************************************************/
-
-/* Authors: Elham Iravani, Robert Haschke
-   Desc:    Fix collisions in input scene
-*/
+/* Authors: Joseph Moore */
 
 #pragma once
 
-#include <moveit/task_constructor/storage.h>
-#include <moveit/task_constructor/stage.h>
-#include <geometry_msgs/msg/vector3.hpp>
-#include <moveit/collision_detection/collision_common.hpp>
+#include <moveit/task_constructor/container.h>
 
 namespace moveit {
 namespace task_constructor {
 namespace stages {
 
-class FixCollisionObjects : public PropagatingEitherWay
+/** A wrapper which lazily passes a limited number of solutions
+ *
+ * The best solution at each call to compute is passed on
+ *
+ */
+class LimitSolutions : public WrapperBase
 {
 public:
-	FixCollisionObjects(const std::string& name = "fix collisions of objects");
+	LimitSolutions(const std::string& name = "LimitSolutions", Stage::pointer&& child = Stage::pointer());
 
-	void computeForward(const InterfaceState& from) override;
-	void computeBackward(const InterfaceState& to) override;
+	void reset() override;
+	bool canCompute() const override;
+	void compute() override;
+	void onNewSolution(const SolutionBase& s) override;
 
-	void setDirection(const geometry_msgs::msg::Vector3& dir) { setProperty("direction", dir); }
-	void setMaxPenetration(double penetration) { setProperty("max_penetration", penetration); }
+	void setMaxSolutions(uint32_t max_solutions) { setProperty("max_solutions", max_solutions); }
 
 private:
-	SubTrajectory fixCollisions(planning_scene::PlanningScene& scene) const;
+	ordered<const SolutionBase*> upstream_solutions_;
+	uint32_t forwarded_solutions;
 };
 }  // namespace stages
 }  // namespace task_constructor
