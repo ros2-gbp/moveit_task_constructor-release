@@ -65,3 +65,7 @@ override_dh_auto_install:
 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
 	dh_auto_install
+
+	# delete installed moveit/__init__.py (conflicting with moveit package)
+	find . -path "*/opt/ros/*/moveit/__init__.py" -delete
+	find . -path "*/opt/ros/*/moveit/__pycache__" -delete
