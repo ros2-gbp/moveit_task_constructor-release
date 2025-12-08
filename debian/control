@@ -1,0 +1,12 @@
+Source: ros-kilted-moveit-task-constructor-visualization
+Section: misc
+Priority: optional
+Maintainer: Robert Haschke <rhaschke@techfak.uni-bielefeld.de>
+Build-Depends: debhelper (>= 9.0.0), libfmt-dev, qtbase5-dev, ros-kilted-ament-cmake, ros-kilted-ament-cmake-gmock <!nocheck>, ros-kilted-ament-cmake-gtest <!nocheck>, ros-kilted-launch <!nocheck>, ros-kilted-launch-testing <!nocheck>, ros-kilted-launch-testing-ament-cmake <!nocheck>, ros-kilted-launch-testing-ros <!nocheck>, ros-kilted-libyaml-vendor, ros-kilted-moveit-core, ros-kilted-moveit-ros-visualization, ros-kilted-moveit-task-constructor-core, ros-kilted-moveit-task-constructor-msgs, ros-kilted-rclcpp, ros-kilted-rviz2, ros-kilted-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-moveit-task-constructor-visualization
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libfmt-dev, ros-kilted-libyaml-vendor, ros-kilted-moveit-core, ros-kilted-moveit-ros-visualization, ros-kilted-moveit-task-constructor-core, ros-kilted-moveit-task-constructor-msgs, ros-kilted-rclcpp, ros-kilted-rviz2, ros-kilted-ros-workspace
+Description: Visualization tools for MoveIt Task Pipeline
