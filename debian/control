@@ -1,0 +1,12 @@
+Source: ros-kilted-moveit-task-constructor-core
+Section: misc
+Priority: optional
+Maintainer: Michael Goerner <me@v4hn.de>
+Build-Depends: debhelper (>= 9.0.0), libfmt-dev, ros-kilted-ament-cmake, ros-kilted-ament-cmake-gmock <!nocheck>, ros-kilted-ament-cmake-gtest <!nocheck>, ros-kilted-ament-cmake-pytest <!nocheck>, ros-kilted-ament-cmake-python, ros-kilted-geometry-msgs, ros-kilted-launch-testing-ament-cmake <!nocheck>, ros-kilted-moveit-configs-utils <!nocheck>, ros-kilted-moveit-core, ros-kilted-moveit-planners <!nocheck>, ros-kilted-moveit-resources-fanuc-moveit-config <!nocheck>, ros-kilted-moveit-ros-planning, ros-kilted-moveit-ros-planning-interface, ros-kilted-moveit-task-constructor-msgs, ros-kilted-py-binding-tools, ros-kilted-rclcpp, ros-kilted-rviz-marker-tools, ros-kilted-tf2-eigen, ros-kilted-visualization-msgs, ros-kilted-ros-workspace
+Homepage: https://github.com/moveit/moveit_task_constructor
+Standards-Version: 3.9.2
+
+Package: ros-kilted-moveit-task-constructor-core
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libfmt-dev, ros-kilted-geometry-msgs, ros-kilted-moveit-core, ros-kilted-moveit-ros-planning, ros-kilted-moveit-ros-planning-interface, ros-kilted-moveit-task-constructor-msgs, ros-kilted-py-binding-tools, ros-kilted-rclcpp, ros-kilted-rviz-marker-tools, ros-kilted-tf2-eigen, ros-kilted-visualization-msgs, ros-kilted-ros-workspace
+Description: MoveIt Task Pipeline
