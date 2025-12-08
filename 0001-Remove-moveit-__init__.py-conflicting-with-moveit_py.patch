@@ -1,0 +1,24 @@
+From 90c0c2d598f6ea9f4d2062313450729ac272a2c5 Mon Sep 17 00:00:00 2001
+From: Robert Haschke <rhaschke@techfak.uni-bielefeld.de>
+Date: Mon, 8 Dec 2025 15:58:52 +0100
+Subject: [PATCH] Remove moveit/__init__.py conflicting with moveit_py package
+
+---
+ debian/rules.em | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/debian/rules.em b/debian/rules.em
+index a856369..36161bc 100755
+--- a/debian/rules.em
++++ b/debian/rules.em
+@@ -65,3 +65,7 @@ override_dh_auto_install:
+ 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+ 	dh_auto_install
++
++	# delete installed moveit/__init__.py (conflicting with moveit package)
++	find . -path "*/opt/ros/*/moveit/__init__.py" -delete
++	find . -path "*/opt/ros/*/moveit/__pycache__" -delete
+-- 
+2.43.0
+
