@@ -1,3 +1,32 @@
+## moveit_task_constructor (rolling) - 0.1.5-1
+
+The packages in the `moveit_task_constructor` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --ros-distro rolling moveit_task_constructor` on `Wed, 08 Apr 2026 19:43:44 -0000`
+
+These packages were released:
+- `moveit_task_constructor_capabilities`
+- `moveit_task_constructor_core`
+- `moveit_task_constructor_demo`
+- `moveit_task_constructor_msgs`
+- `moveit_task_constructor_visualization`
+- `rviz_marker_tools`
+
+Version of package(s) in repository `moveit_task_constructor`:
+
+- upstream repository: https://github.com/moveit/moveit_task_constructor.git
+- release repository: https://github.com/ros2-gbp/moveit_task_constructor-release.git
+- rosdistro version: `0.1.4-2`
+- old version: `0.1.4-2`
+- new version: `0.1.5-1`
+
+Versions of tools used:
+
+- bloom version: `0.13.0`
+- catkin_pkg version: `1.1.0`
+- rosdep version: `0.26.0`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## moveit_task_constructor (rolling) - 0.1.4-2
 
 The packages in the `moveit_task_constructor` repository were released into the `rolling` distro by running `/usr/bin/bloom-release -r rolling moveit_task_constructor` on `Mon, 08 Dec 2025 19:20:38 -0000`
