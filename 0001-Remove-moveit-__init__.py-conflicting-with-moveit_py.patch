@@ -1,4 +1,4 @@
-From b1e7e044b0e07f67cc9560b64db2de6fced4c220 Mon Sep 17 00:00:00 2001
+From 022e212e579c93a92191fdc7beda2f65efe856f6 Mon Sep 17 00:00:00 2001
 From: Robert Haschke <rhaschke@techfak.uni-bielefeld.de>
 Date: Mon, 8 Dec 2025 15:58:52 +0100
 Subject: [PATCH] Remove moveit/__init__.py conflicting with moveit_py package
@@ -8,7 +8,7 @@ Subject: [PATCH] Remove moveit/__init__.py conflicting with moveit_py package
  1 file changed, 4 insertions(+)
 
 diff --git a/debian/rules.em b/debian/rules.em
-index a856369..36161bc 100755
+index a856369d18c3..36161bc15e58 100755
 --- a/debian/rules.em
 +++ b/debian/rules.em
 @@ -65,3 +65,7 @@ override_dh_auto_install:
@@ -20,5 +20,5 @@ index a856369..36161bc 100755
 +	find . -path "*/opt/ros/*/moveit/__init__.py" -delete
 +	find . -path "*/opt/ros/*/moveit/__pycache__" -delete
 -- 
-2.43.0
+2.53.0
 
