@@ -112,4 +112,5 @@ tracks:
     ros_distro: rolling
     vcs_type: git
     vcs_uri: https://github.com/moveit/moveit_task_constructor.git
-    version: :{auto}
+    version: 0.1.5
+    version_saved: :{auto}
