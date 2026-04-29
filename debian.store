@@ -1,1 +1,1 @@
-{"base": "cad323b7340e", "parent": "debian/rolling/moveit_task_constructor_msgs", "previous": "795aebe5d5ea", "trim": "", "trimbase": ""}
+{"base": "87e2819", "parent": "debian/lyrical/moveit_task_constructor_msgs", "previous": "4850ccc", "trim": "", "trimbase": ""}
