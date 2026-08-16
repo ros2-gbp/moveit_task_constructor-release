@@ -1,4 +1,4 @@
-From 501b491347f25e0ab10a4d899dd7aacb208400c6 Mon Sep 17 00:00:00 2001
+From 4b1ce6ac68ad3fe6f36e3bf4700d86542faa491f Mon Sep 17 00:00:00 2001
 From: Robert Haschke <rhaschke@techfak.uni-bielefeld.de>
 Date: Mon, 8 Dec 2025 15:58:52 +0100
 Subject: [PATCH] Remove moveit/__init__.py conflicting with moveit_py package
