@@ -1,6 +1,6 @@
 <package format="2">
 	<name>moveit_task_constructor_visualization</name>
-	<version>0.1.5</version>
+	<version>0.1.6</version>
 	<description>Visualization tools for MoveIt Task Pipeline</description>
 
 	<license>BSD</license>
@@ -11,7 +11,7 @@
 	<buildtool_depend>ament_cmake</buildtool_depend>
 
 	<depend>fmt</depend>
-	<build_depend>qtbase5-dev</build_depend>
+	<build_depend>qt-base-dev</build_depend>
 	<depend>moveit_core</depend>
 	<depend>moveit_task_constructor_msgs</depend>
 	<depend>moveit_task_constructor_core</depend>
