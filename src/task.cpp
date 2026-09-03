@@ -318,8 +318,7 @@ moveit::core::MoveItErrorCode Task::execute(const SolutionBase& s) {
 		if (pimpl()->preempt_requested_) {
 			auto cancel_future = execute_ac_->async_cancel_goal(goal_handle);
 			this->resetPreemptRequest();
-			if (rclcpp::spin_until_future_complete(execute_solution_node_, cancel_future) !=
-			    rclcpp::FutureReturnCode::SUCCESS) {
+			if (executor.spin_until_future_complete(cancel_future) != rclcpp::FutureReturnCode::SUCCESS) {
 				RCLCPP_ERROR(execute_solution_node_->get_logger(), "Could not preempt execution");
 				return error_code;
 			} else {
@@ -330,7 +329,7 @@ moveit::core::MoveItErrorCode Task::execute(const SolutionBase& s) {
 		executor.spin_some();
 	}
 
-	auto result = result_future.get();
+	auto const& result = result_future.get();
 	if (result.code != rclcpp_action::ResultCode::SUCCEEDED) {
 		RCLCPP_ERROR(execute_solution_node_->get_logger(), "Goal was aborted or canceled");
 		return error_code;
