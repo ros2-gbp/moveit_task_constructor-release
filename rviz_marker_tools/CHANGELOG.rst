@@ -2,6 +2,9 @@
 Changelog for package rviz_marker_tools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.6 (2026-08-16)
+------------------
+
 0.1.5 (2026-04-08)
 ------------------
 
@@ -17,6 +20,9 @@ Changelog for package rviz_marker_tools
 * rviz_marker_tools: drop rviz dependency
 * ROS 2 Migration (`#170 <https://github.com/moveit/moveit_task_constructor/issues/170>`_)
 * Contributors: AndyZe, Henning Kayser, JafarAbdi, Jochen Sprickerhof, Michael Görner, Robert Haschke
+
+0.1.8 (2026-09-03)
+------------------
 
 0.1.3 (2023-03-06)
 ------------------
