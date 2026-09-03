@@ -47,7 +47,7 @@ Changelog for package moveit_task_constructor_demo
 * ROS 2 Migration (`#170 <https://github.com/moveit/moveit_task_constructor/issues/170>`_)
 * Contributors: AndyZe, Cihat Kurtuluş Altıparmak, Fabian Schuetze, Gauthier Hentz, Henning Kayser, Jafar, JafarAbdi, Julia Jia, Karthik Arumugham, Michael Görner, Robert Haschke, Sebastian Jahr, Stephanie Eng, TipluJacob, VideoSystemsTech
 
-0.1.7 (2026-09-01)
+0.1.8 (2026-09-03)
 ------------------
 
 0.1.3 (2023-03-06)

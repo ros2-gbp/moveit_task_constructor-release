@@ -136,9 +136,10 @@ Changelog for package moveit_task_constructor_core
 * ROS 2 Migration (`#170 <https://github.com/moveit/moveit_task_constructor/issues/170>`_)
 * Contributors: Abishalini, Abishalini Sivaraman, Ali Haider, AndyZe, Captain Yoshi, Cihat Kurtuluş Altıparmak, Daniel García López, Gauthier Hentz, Henning Kayser, Jafar, Jafar Uruç, JafarAbdi, Mario Prats, Marq Rasmussen, Michael Görner, Michael Wiznitzer, Paul Gesel, Peter David Fagan, Robert Haschke, Sebastian Castro, Sebastian Jahr, Tyler Weaver, VideoSystemsTech, Wyatt Rees
 
-0.1.7 (2026-09-01)
+0.1.8 (2026-09-03)
 ------------------
-* Switch to standard pybind11 v3 / Remove submodule
+* clang-tidy fixes
+* Fix ordering of pybind11 and py-binding-tools
 * Fix integration test (`#760 <https://github.com/moveit/moveit_task_constructor/issues/760>`_)
 * Contributors: Robert Haschke, ktyang512
 
