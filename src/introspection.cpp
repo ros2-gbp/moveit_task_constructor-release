@@ -50,6 +50,10 @@
 #include <boost/bimap.hpp>
 #include <rcutils/isalnum_no_locale.h>
 
+#ifdef _WIN32
+#include <winsock.h>
+#endif
+
 static auto LOGGER = rclcpp::get_logger("introspection");
 
 namespace moveit {
@@ -202,6 +206,7 @@ void Introspection::publishSolution(const SolutionBase& s) {
 }
 
 void Introspection::publishAllSolutions(bool wait) {
+	// NOLINTBEGIN(clang-analyzer-unix.BlockInCriticalSection)
 	for (const auto& solution : impl->task_->stages()->solutions()) {
 		publishSolution(*solution);
 
@@ -212,6 +217,7 @@ void Introspection::publishAllSolutions(bool wait) {
 				break;
 		}
 	};
+	// NOLINTEND(clang-analyzer-unix.BlockInCriticalSection)
 }
 
 const SolutionBase* Introspection::solutionFromId(uint id) const {
