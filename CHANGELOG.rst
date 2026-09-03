@@ -2,6 +2,14 @@
 Changelog for package moveit_task_constructor_core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.6 (2026-08-16)
+------------------
+* Support Ubuntu 26.04 and Qt6 (`#758 <https://github.com/moveit/moveit_task_constructor/issues/758>`_)
+* Modernize fmt usage (`#755 <https://github.com/moveit/moveit_task_constructor/issues/755>`_, `#756 <https://github.com/moveit/moveit_task_constructor/issues/756>`_)
+* Add Windows socket header inclusion (`#751 <https://github.com/moveit/moveit_task_constructor/issues/751>`_)
+* LimitSolutions: prevent child compute calls after max_solutions is reached (`#745 <https://github.com/moveit/moveit_task_constructor/issues/745>`_)
+* Contributors: Aaron Chong, Daniel García López, Dhruv Patel, Nathan Brooks, Robert Haschke, Tobias Fischer
+
 0.1.5 (2026-04-08)
 ------------------
 * Replace deprecated rclcpp::spin_some()
@@ -127,6 +135,13 @@ Changelog for package moveit_task_constructor_core
 * Remove underscore from public members in MotionPlanResponse (`#426 <https://github.com/moveit/moveit_task_constructor/issues/426>`_)
 * ROS 2 Migration (`#170 <https://github.com/moveit/moveit_task_constructor/issues/170>`_)
 * Contributors: Abishalini, Abishalini Sivaraman, Ali Haider, AndyZe, Captain Yoshi, Cihat Kurtuluş Altıparmak, Daniel García López, Gauthier Hentz, Henning Kayser, Jafar, Jafar Uruç, JafarAbdi, Mario Prats, Marq Rasmussen, Michael Görner, Michael Wiznitzer, Paul Gesel, Peter David Fagan, Robert Haschke, Sebastian Castro, Sebastian Jahr, Tyler Weaver, VideoSystemsTech, Wyatt Rees
+
+0.1.8 (2026-09-03)
+------------------
+* clang-tidy fixes
+* Fix ordering of pybind11 and py-binding-tools
+* Fix integration test (`#760 <https://github.com/moveit/moveit_task_constructor/issues/760>`_)
+* Contributors: Robert Haschke, ktyang512
 
 0.1.3 (2023-03-06)
 ------------------
