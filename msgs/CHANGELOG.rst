@@ -2,6 +2,9 @@
 Changelog for package moveit_task_constructor_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.6 (2026-08-16)
+------------------
+
 0.1.5 (2026-04-08)
 ------------------
 
@@ -12,6 +15,9 @@ Changelog for package moveit_task_constructor_msgs
 * Add planner_id to SubTrajectory info (`#490 <https://github.com/moveit/moveit_task_constructor/issues/490>`_)
 * ROS 2 Migration (`#170 <https://github.com/moveit/moveit_task_constructor/issues/170>`_)
 * Contributors: AndyZe, Henning Kayser, JafarAbdi, Robert Haschke, Sebastian Jahr
+
+0.1.8 (2026-09-03)
+------------------
 
 0.1.3 (2023-03-06)
 ------------------
