@@ -3,7 +3,7 @@ project(moveit_task_constructor_core)
 
 find_package(ament_cmake REQUIRED)
 
-find_package(Boost REQUIRED)
+find_package(Boost CONFIG REQUIRED)
 find_package(fmt REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(moveit_common REQUIRED)
@@ -12,13 +12,11 @@ find_package(moveit_core REQUIRED)
 find_package(moveit_ros_planning REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_task_constructor_msgs REQUIRED)
-find_package(py_binding_tools REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rviz_marker_tools REQUIRED)
 find_package(tf2_eigen REQUIRED)
 find_package(visualization_msgs REQUIRED)
 
-set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
