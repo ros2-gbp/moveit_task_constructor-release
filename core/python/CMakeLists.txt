@@ -4,6 +4,9 @@ find_package(Python3 COMPONENTS Interpreter Development)
 set(PYBIND11_PYTHON_VERSION ${PYTHON_VERSION})
 find_package(pybind11 3.0 REQUIRED)
 
+# Process only after building custom pybind11 to avoid conflicts with system pybind11
+find_package(py_binding_tools REQUIRED)
+
 # C++ wrapper code
 add_subdirectory(bindings)
 
