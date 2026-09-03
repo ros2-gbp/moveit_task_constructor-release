@@ -19,12 +19,10 @@ jobs:
       fail-fast: false
       matrix:
         env:
-          - IMAGE: jazzy-source
+          - IMAGE: rolling-release
             NAME: ccov
             TARGET_CMAKE_ARGS: -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="--coverage"
-          - IMAGE: rolling-source
-            CLANG_TIDY: pedantic
-          - IMAGE: rolling-source
+          - IMAGE: rolling-release
             NAME: asan
             # Add fast_unwind_on_malloc=0 to fix stacktraces being too short or do not make sense
             # see https://github.com/google/sanitizers/wiki/AddressSanitizer
@@ -34,6 +32,10 @@ jobs:
               -e LSAN_OPTIONS="suppressions=$PWD/.github/workflows/lsan.suppressions,fast_unwind_on_malloc=0"
               -e ASAN_OPTIONS="new_delete_type_mismatch=0,alloc_dealloc_mismatch=0"
             TARGET_CMAKE_ARGS: -DCMAKE_CXX_FLAGS="-fsanitize=address -fno-omit-frame-pointer -O1 -g"
+          - IMAGE: lyrical-release
+            CLANG_TIDY: pedantic
+          - IMAGE: kilted-release
+          - IMAGE: jazzy-release
 
     env:
       CLANG_TIDY_ARGS: -quiet -export-fixes ${{ github.workspace }}/.work/clang-tidy-fixes.yaml
@@ -46,12 +48,20 @@ jobs:
       # perform full clang-tidy check only on manual trigger (workflow_dispatch), PRs do check changed files, otherwise nothing
       CLANG_TIDY_BASE_REF: ${{ github.event_name != 'workflow_dispatch' && (github.base_ref || github.ref) || '' }}
       CC: ${{ matrix.env.CLANG_TIDY && 'clang' }}
-      CXX: ${{ matrix.env.CLANG_TIDY && 'clang++ -std=c++17' }}
+      CXX: ${{ matrix.env.CLANG_TIDY && 'clang++' }}
+      # Install clang required for clang build and enforce clang-tidy-22
+      # https://bugs.launchpad.net/ubuntu/+source/llvm-defaults/+bug/2166318
+      ADDITIONAL_DEBS: ${{ matrix.env.CLANG_TIDY && 'clang clang-tidy-22' }}
+      AFTER_INSTALL_CLANG_TIDY: |
+        update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-21 21
+        update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-22 22
+        update-alternatives --install /usr/bin/run-clang-tidy run-clang-tidy /usr/bin/run-clang-tidy-21 21
+        update-alternatives --install /usr/bin/run-clang-tidy run-clang-tidy /usr/bin/run-clang-tidy-22 22
 
     name: "${{ matrix.env.IMAGE }}${{ matrix.env.NAME && ' • ' || ''}}${{ matrix.env.NAME }}${{ matrix.env.CLANG_TIDY && ' • clang-tidy' || '' }}"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
 
@@ -100,13 +110,14 @@ jobs:
       - name: Generate codecov report
         uses: rhaschke/lcov-action@main
         if: contains(matrix.env.TARGET_CMAKE_ARGS, '--coverage') && steps.ici.outputs.target_test_results == '0'
+        continue-on-error: true  # ignore non-suppressable errors of lcov
         with:
           docker: $DOCKER_IMAGE
           workdir: ${{ env.BASEDIR }}/target_ws
           lcov_capture_args: --ignore-errors=source,gcov,mismatch,negative
           ignore: '"*/target_ws/build/*" "*/target_ws/install/*" "*/test/*"'
       - name: Upload codecov report
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
         if: contains(matrix.env.TARGET_CMAKE_ARGS, '--coverage') && steps.ici.outputs.target_test_results == '0'
         with:
           files: ${{ env.BASEDIR }}/target_ws/coverage.info
